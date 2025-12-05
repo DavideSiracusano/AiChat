@@ -1,5 +1,6 @@
 "use client";
-import { IoIosSend } from "react-icons/io";
+
+import { AiOutlineSend } from "react-icons/ai";
 
 interface FooterProps {
   inputRef: React.RefObject<HTMLInputElement | null>;
@@ -30,11 +31,10 @@ export default function Footer({
       />
       <button
         onClick={handleSendMessage}
-        className="p-2.5 rounded-lg mr-5 bg-[#002d62] text-white cursor-pointer shadow-md hover:bg-[#005fa3]"
+        className="p-2.5 rounded-lg mr-5 bg-[#0079d3] text-white cursor-pointer shadow-md hover:bg-[#005fa3]"
         aria-label="Invia"
       >
-        {/* react icon send */}
-        <IoIosSend size={24} />
+        <AiOutlineSend size={24} />
       </button>
     </footer>
   );

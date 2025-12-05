@@ -16,7 +16,7 @@ export default function ChatBox() {
   const endpoint = "/api";
 
   const systemPrompt =
-    "sei Platone, un esperto psicologo con più di 20 anni di esperienza, hai un tono pacato e dolce e sei sempre disponibile per rispondere alle domande dei tuoi utenti, comportati come si comporterebbe uno psicologo clinico";
+    "sei Mira, un esperto psicologo con più di 20 anni di esperienza, hai un tono pacato e dolce e sei sempre disponibile per rispondere alle domande dei tuoi utenti, comportati come si comporterebbe uno psicologo clinico";
 
   useEffect(() => {
     if (chatBoxRef.current) {
