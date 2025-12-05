@@ -171,7 +171,7 @@ export default function ChatBox() {
   return (
     <div
       ref={chatBoxRef}
-      className="h-full overflow-y-auto p-5 bg-gradient-to-br from-[#020024] via-[#094442] to-[#0d1e24]"
+      className="h-full overflow-y-auto p-5 bg-linear-to-br from-[#020024] via-[#094442] to-[#0d1e24]"
     >
       {messages.map((message, index) => (
         <div
@@ -181,7 +181,7 @@ export default function ChatBox() {
           }`}
         >
           <div
-            className={`p-2.5 rounded-lg max-w-[60%] break-words shadow-md ${
+            className={`p-2.5 rounded-lg max-w-[60%] wrap-break-word shadow-md ${
               message.type === "sent"
                 ? "bg-[#2e3a46] text-white"
                 : "bg-[#0077cc] text-white"
