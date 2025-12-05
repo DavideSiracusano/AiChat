@@ -1,5 +1,8 @@
 # AI Chat - Mira
 
+<img width="1920" height="831" alt="Screenshot 2025-12-05 183103" src="https://github.com/user-attachments/assets/f19250a6-6d68-4cd4-9c57-79dd9186bd20" />
+
+
 Benvenuti in AI Chat - Mira, il vostro assistente psicologo virtuale. Questo progetto è una moderna applicazione di chat basata su Next.js che consente agli utenti di interagire con un'intelligenza artificiale con la personalità di uno psicologo esperto.
 
 ## Caratteristiche
