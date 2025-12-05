@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import AILogo from "../assets/ai-logo.avif";
-import { BsSearch, BsJournalMedical, BsThreeDots } from "react-icons/bs";
 import { useEffect, useState } from "react";
 
 export default function Header() {
@@ -19,7 +18,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="h-[70px] bg-[#2e3a46] text-white flex justify-between items-center px-5">
+    <header className="h-[70px] bg-[#0d1e24] text-white flex justify-between items-center px-5">
       <div className="flex gap-2.5 text-5xl cursor-pointer items-center">
         <Image src={AILogo} className="w-12 h-12 rounded-full" alt="avatar" />
         <div className="flex flex-col justify-center items-start ml-2.5">
@@ -30,12 +29,6 @@ export default function Header() {
             {status}
           </p>
         </div>
-      </div>
-
-      <div className="flex gap-2.5 text-5xl cursor-pointer">
-        <BsSearch />
-        <BsJournalMedical />
-        <BsThreeDots />
       </div>
     </header>
   );
