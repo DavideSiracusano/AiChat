@@ -1,6 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  type KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 interface Message {
   type: "sent" | "received";
@@ -31,7 +36,7 @@ export default function ChatBox() {
     const inizioOggi = new Date(
       now.getFullYear(),
       now.getMonth(),
-      now.getDate()
+      now.getDate(),
     );
     const inizioD = new Date(d.getFullYear(), d.getMonth(), d.getDate());
 
@@ -80,7 +85,7 @@ export default function ChatBox() {
 
   const addMessage = (
     messageType: "sent" | "received",
-    messageText: string
+    messageText: string,
   ) => {
     const newMessage: Message = {
       type: messageType,
@@ -115,7 +120,7 @@ export default function ChatBox() {
         }
         const errorData = await response.json();
         throw new Error(
-          errorData.error || `Errore del server: ${response.status}`
+          errorData.error || `Errore del server: ${response.status}`,
         );
       }
 
@@ -168,9 +173,24 @@ export default function ChatBox() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Tab" && !event.shiftKey) {
+      event.preventDefault();
+      const focusEvent = new CustomEvent("focusInput");
+      window.dispatchEvent(focusEvent);
+    }
+  };
+
   return (
     <div
+      id="chat-log"
       ref={chatBoxRef}
+      role="log"
+      aria-live="polite"
+      aria-relevant="additions text"
+      aria-label="Area messaggi della chat"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
       className="h-full overflow-y-auto p-5 bg-linear-to-br from-[#020024] via-[#094442] to-[#0d1e24]"
     >
       {messages.map((message, index) => (
@@ -186,9 +206,15 @@ export default function ChatBox() {
                 ? "bg-[#2e3a46] text-white"
                 : "bg-[#0077cc] text-white"
             }`}
+            role="group"
+            aria-label={
+              message.type === "sent"
+                ? `Tuo messaggio alle ${message.time}`
+                : `Messaggio di Mira alle ${message.time}`
+            }
           >
             <p>{message.text}</p>
-            <time className="text-xs text-gray-400 block mt-1">
+            <time className="text-xs text-gray-300 block mt-1">
               {message.time}
             </time>
           </div>
