@@ -12,6 +12,32 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    const handleTabFromDocument = (event: KeyboardEvent) => {
+      const active = document.activeElement;
+      const isBodyOrRoot =
+        active === document.body || active === document.documentElement;
+
+      if (event.key === "Tab" && isBodyOrRoot) {
+        event.preventDefault();
+        if (event.shiftKey) {
+          const focusable = document.querySelectorAll<HTMLElement>(
+            "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex='-1'])",
+          );
+          const lastFocusable = focusable[focusable.length - 1];
+          lastFocusable?.focus();
+          return;
+        }
+
+        inputRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleTabFromDocument);
+    return () =>
+      window.removeEventListener("keydown", handleTabFromDocument);
+  }, []);
+
   const handleSendMessage = () => {
     if (inputValue.trim() === "") return;
 
@@ -30,24 +56,13 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     }
   };
 
-  // Permette di dare il focus all'input messaggi quando
-  // viene emesso l'evento "focusInput" (es. premendo TAB nella chat)
-  useEffect(() => {
-    const handleFocusInput = () => {
-      inputRef.current?.focus();
-    };
-
-    window.addEventListener("focusInput", handleFocusInput);
-    return () => window.removeEventListener("focusInput", handleFocusInput);
-  }, []);
-
   return (
     <div className="flex flex-col h-screen bg-[#0d1e24]">
       <a
-        href="#main-content"
+        href="#chat-input"
         className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-blue-600 text-white p-2 z-50"
       >
-        Salta al contenuto principale
+        Salta al campo messaggio
       </a>
       <Header />
       <main id="main-content" role="main" className="flex-1 overflow-hidden">

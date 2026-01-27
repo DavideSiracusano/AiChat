@@ -20,6 +20,7 @@ export default function Header() {
   return (
     <header
       role="banner"
+      aria-labelledby="name status"
       className="h-[70px] bg-[#0d1e24] text-white flex justify-between items-center px-5"
     >
       <div className="flex gap-2.5 text-5xl items-center">

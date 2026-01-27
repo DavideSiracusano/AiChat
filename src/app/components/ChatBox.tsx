@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  type KeyboardEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Message {
   type: "sent" | "received";
@@ -173,14 +168,6 @@ export default function ChatBox() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Tab" && !event.shiftKey) {
-      event.preventDefault();
-      const focusEvent = new CustomEvent("focusInput");
-      window.dispatchEvent(focusEvent);
-    }
-  };
-
   return (
     <div
       id="chat-log"
@@ -189,9 +176,8 @@ export default function ChatBox() {
       aria-live="polite"
       aria-relevant="additions text"
       aria-label="Area messaggi della chat"
-      tabIndex={0}
-      onKeyDown={handleKeyDown}
-      className="h-full overflow-y-auto p-5 bg-linear-to-br from-[#020024] via-[#094442] to-[#0d1e24]"
+      tabIndex={-1}
+      className="h-full overflow-y-auto p-5 bg-linear-to-br from-[#020024] via-[#094442] to-[#0d1e24] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
     >
       {messages.map((message, index) => (
         <div
