@@ -34,8 +34,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     };
 
     window.addEventListener("keydown", handleTabFromDocument);
-    return () =>
-      window.removeEventListener("keydown", handleTabFromDocument);
+    return () => window.removeEventListener("keydown", handleTabFromDocument);
   }, []);
 
   const handleSendMessage = () => {
